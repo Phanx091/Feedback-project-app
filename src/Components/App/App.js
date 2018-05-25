@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import PageOne from '../Page_one/Page_one';
 import PageTwo from '../Page_two/Page_two';
 import PageThree from '../Page_three/Page_three';
@@ -8,7 +8,17 @@ import PageFour from '../Page_four/Page_four';
 // import Admin from '../Admin/Admin';
 // import axios from 'axios';
 
+
+
+
+
+
 class App extends Component {
+
+
+  
+
+
   render() {
     return (
       <Router>
