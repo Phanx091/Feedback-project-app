@@ -11,7 +11,7 @@ app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
 
-app.use('/entry', entryRouter); 
+app.use('/api/entry', entryRouter); 
 
 /** ---------- START SERVER ---------- **/
 app.listen(PORT, function () {

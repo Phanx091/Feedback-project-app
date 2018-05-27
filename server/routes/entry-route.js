@@ -19,6 +19,21 @@ router.post('/', (req,res) => {
 }); // end of router.post
 
 
-module.export = router;
 
+
+
+router.get('/', (req, res) => {
+    const queryText = `SELECT * FROM "feedback";`;
+    pool
+     .query(queryText)
+     .then(results => {
+         res.send(results.row);
+     })
+     .catch(error => {
+        console.log(`router.get/projects ${error}`);
+        res.sendStatus(500);
+     });
+}); // end of router.get
+
+module.export = router;
 
