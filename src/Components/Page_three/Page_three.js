@@ -13,12 +13,12 @@ class PageThree extends Component {
     handleChangeForSupported = event => {
         const entry = event.target.value
         this.setState({
-            feelingText: entry,
+            supportedText: entry,
         })
     }
 
     supportedEntry = () => {
-        const action = { type: "FORM_ENTRY", property: 'supported', payload: this.state.supportedText};
+        const action = { type: "FORM_ENTRY", property: 'support', payload: this.state.supportedText};
         this.props.dispatch(action);
     }
 
@@ -30,7 +30,7 @@ class PageThree extends Component {
                 <h4>How well are you feeling supported?</h4> 
                 <input type="number" onChange={this.handleChangeForSupported} placeholder="How well are you being supported?"/>
                 <button onClick={this.supportedEntry}>Submit</button>
-                <Link to="/2">Back</Link>
+                {/* <Link to="/2">Back</Link> */}
                 <Link to="/4">Next</Link>
             </div>
             

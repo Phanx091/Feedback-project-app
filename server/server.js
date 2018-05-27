@@ -1,17 +1,23 @@
+/** ----------CONST ---------- **/
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const port = process.env.PORT || 5000;
-const entryRouter = require('./routes/entry-route');
 
-/** ---------- MIDDLEWARE ---------- **/
-app.use(bodyParser.json()); // needed for angular requests
+/** ----------ROUTE INCLUDES ---------- **/
+const feedbackRouter = require('./routes/feedback.router');
+
+/** ----------BODY PARSER MIDDLEWARE ---------- **/
+app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true}));
+
+/** ---------- SERVE STATIC ROUTES ---------- **/
 app.use(express.static('build'));
 
-/** ---------- EXPRESS ROUTES ---------- **/
+/** ---------- ROUTES ---------- **/
+app.use('/api/feedback', feedbackRouter); 
 
-app.use('/api/entry', entryRouter); 
+/** ---------- PORT SERVER ---------- **/
+const PORT = process.env.PORT || 5000;
 
 /** ---------- START SERVER ---------- **/
 app.listen(PORT, function () {

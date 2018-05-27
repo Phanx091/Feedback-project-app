@@ -39,7 +39,7 @@ class PageTwo extends Component {
                     onChange={this.handleChangeForUnderstanding} 
                     value={this.understandingText} placeholder="How well are you understanding the content?"/>
                 <button onClick={this.understandingEntry}>Submit</button>
-                <Link to="/2">Back</Link>
+                {/* <Link to="/">Back</Link> */}
                 <Link to="/3">Next</Link>
             </div>
         );

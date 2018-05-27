@@ -7,6 +7,7 @@ class PageOne extends Component {
         super(props);
         this.state = {
             feelingText: '',
+            nextPage: '/2',
         }
     }
 
@@ -20,6 +21,7 @@ class PageOne extends Component {
     feelingEntry = () => {
         const action = { type: "FORM_ENTRY", property: 'feeling', payload: this.state.feelingText};
         this.props.dispatch(action);
+        this.props.history.push(this.props.nextPage);
     }
 
     render() {
@@ -32,7 +34,7 @@ class PageOne extends Component {
                         onChange={this.handleChangeForFeeling} 
                         value={this.feelingText} placeholder="How are you feeling today?"/>
                     <button onClick={this.feelingEntry}>Submit</button>
-                    <Link to="/2">Next to page 3</Link>
+                    <Link to="/2">Next to page 2</Link>
                     {/* <button onClick={(this.feelingEntry) => {this.props.history.replace('/2')}}>NEXT</button> */}
                 </div>
             </span>

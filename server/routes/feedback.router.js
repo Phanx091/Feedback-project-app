@@ -4,7 +4,8 @@ const pool = require('../modules/pool');
 
 
 
-router.post('/', (req,res) => {
+router.post('/', (req, res) => {
+    console.log('WATCHYA');
     const post_id = req.body;
     const queryText = `INSERT INTO "feedback" ("feeling", "understanding", "support", "comments")
                        VALUES ($1, $2, $3, $4);`;
@@ -13,7 +14,7 @@ router.post('/', (req,res) => {
         res.sendStatus(200);
     })
     .catch((error) => {
-        console.log('Error on router.post', error);
+        console.log(`ERROR on router.post api/feedback ${error}`);
         res.sendStatus(500);
     });
 }); // end of router.post
@@ -30,10 +31,10 @@ router.get('/', (req, res) => {
          res.send(results.row);
      })
      .catch(error => {
-        console.log(`router.get/projects ${error}`);
+        console.log(`ERROR on router.get api/feedback ${error}`);
         res.sendStatus(500);
      });
 }); // end of router.get
 
-module.export = router;
+module.exports = router;
 
