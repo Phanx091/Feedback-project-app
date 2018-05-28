@@ -28,7 +28,6 @@ class PageThree extends Component {
             <div className="pages">
                 <h3>Page: 3 of 4</h3>
             </div>
-                <h3>PageThree</h3>
                 <h4>How well are you feeling supported?</h4> 
                 <input type="number" onChange={this.handleChangeForSupported} placeholder="scale 1 to 10"/>
                 {/* <button onClick={this.supportedEntry}>Submit</button> */}
