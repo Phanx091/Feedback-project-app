@@ -3,26 +3,42 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Moment from 'react-moment';
 
-
-
-
 class Admin extends Component {
     constructor(props) {
         super(props);
         this.state = {
             feedbackList: []
         };
-        axios.get('/api/feedback').then((response) => {
+       
+    } // end of constructor 
+
+    getFeedbackData = () => {
+        axios('/api/feedback').then((response) => {
             this.setState({
                 feedbackList: response.data,
             });
+            console.log(response.data);
         }).catch((error) => {
             alert(`ERROR on axios.get ${error}`);
         });
-    } // end of constructor 
+    } // end of getFeedbackData
 
-                
+    componentDidMount() { // this function is an on ready function 
+        this.getFeedbackData();
+    } // end of componentDidMount
 
+    deleteHandleForFeedback = (id) => {
+            axios({
+                method: "DELETE",
+                url: `/api/feedback/${id}`
+            })
+            .then(response => {
+                this.getFeedbackData();
+            })
+            .catch(error => {
+                console.log(`ERROR on deleteHandleForFeedback: ${error}`);
+            });
+    }; // end of deleteHandleForFeedback
 
     render(props) {
         return (
@@ -35,6 +51,7 @@ class Admin extends Component {
                             <th>Comprehension</th>
                             <th>Support</th>
                             <th>Comments</th>
+                            <th>Date</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -46,6 +63,7 @@ class Admin extends Component {
                         <td>{data.support}</td>
                         <td>{data.comments}</td>
                         <td><Moment format="MM/DD/YYYY">{data.date}</Moment></td>
+                        <td><button onClick={this.deleteHandleForFeedback.bind(this, data.id)}>delete</button></td>
                         </tr>
                         ))}
                     </tbody>
@@ -54,7 +72,6 @@ class Admin extends Component {
         )
     }
 }
-
 
 export default connect()(Admin);
 

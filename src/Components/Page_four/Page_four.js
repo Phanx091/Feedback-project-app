@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const mapReduxStateToProps = (reduxState) => (
     {reduxState}
-);
-
+); // end of mapReduxStateToProps
 
 class PageFour extends Component {
     constructor(props) {
@@ -14,36 +13,37 @@ class PageFour extends Component {
         this.state = {
             commentText: '',
         }
-    }
-    handleChangeForComment = event => {
+    } // end of constructor
+
+    handleChangeForComment = event => { // this function returns the value that pass into it to setSet to commentText
         const entry = event.target.value
         this.setState({
             commentText: entry,
         })
-    }
+    } // end of  handleChangeForComment
 
     commentEntry = () => {
         const action = { type: "FORM_ENTRY", property: 'comments', payload: this.state.commentText};
         this.props.dispatch(action);
         this.props.dispatch({type: "SUBMIT_FEEDBACK"})       
-    }
+    } // end of commentEntry
 
     render() {
         return (
             <div>
-                <h3>PageFour</h3>
+                <div className="pages">
+                    <h3>Page: 4 of 4</h3>
+                </div>
                 <h4>Any comments you want to leave?</h4> 
                 <pre>{JSON.stringify(this.props.reduxState)}</pre>
                 <input type="text" onChange={this.handleChangeForComment} 
                     value={this.commentText}
-                    placeholder="Any comments you want to leave?"/>
-                <button onClick={this.commentEntry}>Submit</button>
-                {/* <Link to='/3'>Back</Link> */}
+                    placeholder="write something here..."/>
+                <Link to="/5" style={{textDecoration:'none'}} onClick={this.commentEntry}>NEXT</Link>
 
             </div>
-        );
-    }
-}
-
+        ); // end of return
+    } // end of render
+} // end of PageFour
 
 export default connect(mapReduxStateToProps)(PageFour);
