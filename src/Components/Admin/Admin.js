@@ -1,30 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import Moment from 'react-moment';
+
+
 
 
 class Admin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            feedback: [],
-        }
-        axios.get('/api/feedback').then(response => {
-                    this.setState({
-                        feedback: response.data,
-                    });
-                }).catch(error => {
-                    alert('error on axios.get');
-                })
-    }
+            feedbackList: []
+        };
+        axios.get('/api/feedback').then((response) => {
+            this.setState({
+                feedbackList: response.data,
+            });
+        }).catch((error) => {
+            alert(`ERROR on axios.get ${error}`);
+        });
+    } // end of constructor 
 
+                
 
 
     render(props) {
         return (
-            <div>
+            <div>                
                 <h3>Admin Page</h3> 
-                <table>
+                <table border="1">
                     <thead>
                         <tr>
                             <th>Feeling</th>
@@ -35,22 +39,22 @@ class Admin extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.feedback.map(data => (
-                            <tr key={data.id}>
-                                <td>{data.feeling}</td>
-                                <td>{data.understanding}</td>
-                                <td>{data.support}</td>
-                                <td>{data.comments}</td>
-                                <td>{data.date}</td>
-                            </tr>
+                        {this.state.feedbackList.map(data => (
+                        <tr key={data.id}>
+                        <td>{data.feeling}</td>
+                        <td>{data.understanding}</td>
+                        <td>{data.support}</td>
+                        <td>{data.comments}</td>
+                        <td><Moment format="MM/DD/YYYY">{data.date}</Moment></td>
+                        </tr>
                         ))}
                     </tbody>
                 </table>
-
             </div>
-        );
+        )
     }
 }
 
 
 export default connect()(Admin);
+

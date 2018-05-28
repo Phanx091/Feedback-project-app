@@ -15,31 +15,6 @@ class PageFour extends Component {
             commentText: '',
         }
     }
-
-    
-    // commentEntry = (submitAllEntriesData) => {
-    //   axios({
-    //     method: 'POST',
-    //     url: '/entry',
-    //     data: submitAllEntriesData
-    //   }).then((response) => {
-    //     console.log(response.status);
-    //     this.setState({})
-    //   }).catch((error) => {
-    //     console.log(error);
-    //   });
-    // }
-
-    // sendDataToServer = () => {
-    //     axios.post('/api/entry', this.props.reduxState).then((response) => {
-    //         console.log('success!');
-    //     }).catch((error) => {
-    //         alert('There was a problem...');
-    //     });
-    // }
-
-
-
     handleChangeForComment = event => {
         const entry = event.target.value
         this.setState({
@@ -50,18 +25,7 @@ class PageFour extends Component {
     commentEntry = () => {
         const action = { type: "FORM_ENTRY", property: 'comments', payload: this.state.commentText};
         this.props.dispatch(action);
-        this.props.dispatch({type: "SUBMIT_FEEDBACK"})
-
-
-
-
-        // const feedback = {
-        //     feeling: this.props.reduxState.feeling,
-        //     understanding: this.props.reduxState.understanding,
-        //     support: this.props.reduxState.support,
-        //     comments: this.props.reduxState.comments,
-        // }
-       
+        this.props.dispatch({type: "SUBMIT_FEEDBACK"})       
     }
 
     render() {

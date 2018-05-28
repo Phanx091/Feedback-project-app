@@ -24,11 +24,13 @@ router.post('/', (req, res) => {
 
 
 router.get('/', (req, res) => {
+    console.log('get 1234');
     const queryText = `SELECT * FROM "feedback";`;
     pool
      .query(queryText)
-     .then(results => {
-         res.send(results.row);
+     .then(response => {
+         res.send(response.rows)
+         console.log('data:', response.rows);
      })
      .catch(error => {
         console.log(`ERROR on router.get api/feedback ${error}`);
