@@ -27,7 +27,7 @@ class Admin extends Component {
         this.getFeedbackData();
     } // end of componentDidMount
 
-    deleteHandleForFeedback = (id) => {
+    deleteHandleForFeedback = (id) => { // handle function that request a delete from server by id
             axios({
                 method: "DELETE",
                 url: `/api/feedback/${id}`
