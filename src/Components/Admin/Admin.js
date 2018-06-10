@@ -12,7 +12,7 @@ class Admin extends Component {
        
     } // end of constructor 
 
-    getFeedbackData = () => {
+    getFeedbackData = () => { // handle request 
         axios('/api/feedback').then((response) => {
             this.setState({
                 feedbackList: response.data,
