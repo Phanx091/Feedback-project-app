@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 
 class PageFive extends Component {
-   
+  
     render() {
         return (
             <span>
@@ -16,6 +16,5 @@ class PageFive extends Component {
         );
     }
 }
-
 
 export default connect()(PageFive);
